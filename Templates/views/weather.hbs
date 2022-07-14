@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{>head}}
+</head>
+
+<body>
+    {{>navbar}}
+
+    <!-- Weather Start Here  -->
+    <div class="weather">
+        <div class="container">
+            <h1 class="text-center my-3">You Can Search Weather <br> of Your City</h1>
+            <div class="form">
+                <form class="d-flex my-2 formweather">
+                    <input id="cityName" class="form-control me-2" type="search" value="delhi"
+                        placeholder="Enter Your City Name" autocomplete="off" aria-label="Search">
+                    <button id="submitBtn" class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div class="tempInfo my-3 px-4 py-4">
+                    <div class="topLayer">
+                        <p class="m-0 text-light" id="day">Tuesday</p>
+                        <p class="m-0 text-light" id="today_date"> <span id="date"></span> <span id="month"></span></p>
+                    </div>
+                    <h5 class="text-light mt-3"><span id="city"></span>, <span id="country"></span></h5>
+                    <div class="mainLayer mt-2">
+                        <div class="temprat">
+                            <h1 class="text-light"><span id="temp"></span><sup>o</sup>C</h1>
+                        </div>
+                        <div class="sine" id="tempStatus">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h6 class="text-center" id="Error"></h6>
+    </div>
+
+    {{>footer}}
+
+
+    <script>
+        const day = document.getElementById('day');
+        const date = document.getElementById('date');
+        const month_text = document.getElementById('month');
+
+        date.innerText = new Date().getDate();
+
+        const getCurrentDay = () => {
+            let weekDays = new Array(7);
+            weekDays[0] = "Sunday";
+            weekDays[1] = "Monday";
+            weekDays[2] = "Tuesday";
+            weekDays[3] = "Wednesday";
+            weekDays[4] = "Thursday";
+            weekDays[5] = "Friday";
+            weekDays[6] = "Saturday";
+            let currentTime = new Date();
+            let realday = weekDays[currentTime.getDay()];
+
+            day.innerText = realday;
+        }
+        getCurrentDay();
+
+        const getCurrentmonth = () => {
+            const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            const curmonth = new Date();
+            let realmonth = month[curmonth.getMonth()];
+            month_text.innerText = realmonth;
+        }
+        getCurrentmonth();
+    </script>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
